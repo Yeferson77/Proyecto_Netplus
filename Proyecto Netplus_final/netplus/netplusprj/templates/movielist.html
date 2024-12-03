@@ -10,6 +10,43 @@
     style="background-image: url({% static 'assets/fandf_x.jpg' %});">
     </section>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imagePaths = [
+                "{% static 'assets/fandf_x.jpg' %}",
+                "{% static 'assets/godzilla_kong.png' %}",
+                
+            ];
+            
+            let currentImageIndex = 0;
+            const section = document.getElementById('dynamic-background');
+    
+            // Función para actualizar el fondo
+            function updateBackground() {
+                section.style.backgroundImage = `url(${imagePaths[currentImageIndex]})`;
+            }
+    
+            // Evento de clic en la sección
+            section.addEventListener('click', (event) => {
+                const clickX = event.clientX; // Coordenada X del clic
+                const sectionWidth = section.offsetWidth; // Ancho total de la sección
+    
+                if (clickX < sectionWidth / 2) {
+                    // Clic en la mitad izquierda: retroceder
+                    currentImageIndex = (currentImageIndex - 1 + imagePaths.length) % imagePaths.length;
+                } else {
+                    // Clic en la mitad derecha: avanzar
+                    currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
+                }
+    
+                updateBackground();
+            });
+    
+            // Inicializar el fondo
+            updateBackground();
+        });
+    </script>
+
     <!-- Barra de búsqueda -->
     <div style="margin: 20px; text-align: center;">
         <input id="search-bar" type="text" placeholder="Search for a movie..." 
