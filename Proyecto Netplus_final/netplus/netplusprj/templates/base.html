@@ -1,0 +1,63 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netplus</title>
+    <link rel="stylesheet" href="{% static 'assets/style.css'%}">
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</head>
+
+<body class="bg-black text-gray-100">
+    <nav class="static items-center py-3 px-4 fixed w-full z-50">
+
+        <!-- Contenedor para centrar el logo ,nota cambiar estatic por flex para centrar --> 
+        <div class="static justify-center items-center w-full absolute">
+            <img src="{% static 'assets/netplus.png' %}" alt="logo" class="w-5/12 md:w-2/12">
+        </div>
+
+        
+
+        
+        
+    </nav>
+    
+
+    
+
+    {% block content%}
+
+    {% endblock content %}
+
+    <div>
+        {%if request.user.is_authenticated %}
+        <a href="{% url 'account_logout'%}" class='bg-blue-500 py-1 px-2 text-white md:text-lg rounded-md'>
+            Cerrar Sesion
+        </a>
+        {% else %}
+        <a href="{% url 'account_login' %}" 
+   class="bg-blue-500 w-40 h-40 text-white text-4xl font-semibold flex items-center justify-center rounded-full shadow-lg hover:bg-blue-600 transition-all"style="border-radius: 50%">
+    Iniciar
+</a>
+
+        {% endif %}
+    </div>
+
+</div>
+</header>
+
+    
+    <footer class=" px-5 py-10 ">
+        <ul class="flex justify-between items-center">
+            
+            <li>&copy; All Right Reserved | 2024</li>
+     
+            <li>NETPLUS COMPANY</li>
+        </ul>
+    </footer>
+</body>
+</html>
